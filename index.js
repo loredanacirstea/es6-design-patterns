@@ -1,19 +1,9 @@
 'use strict';
-require(['Model/loretek/design_patterns/Facade.js']);
 
-var facade;
-
-class Test {
-  test() {
-    return "test";
-  }
-}
-
-var test = new Test;
-test.test(); // "test"
+var facade
 
 $( document ).ready(function() {
-  console.log(Facade)
+  require(['Model/design_patterns/Facade.js']);
   facade = new Facade();
   console.log(facade)
 });
