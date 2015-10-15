@@ -1,19 +1,26 @@
+'use strict';
 
-
-class Context {
-    constructor() {
-        this.created = true;
-        this.state = state;
+class Contextt {
+    constructor(state) {
+        switch(state) {
+            case "A":
+                this.state = new ConcreteStateA()
+                break
+            case "B":
+                this.state = new ConcreteStateB()
+                break
+            default:
+                this.state = new ConcreteStateA()
+        }
     }
 
     Request (){
-        this.state.Handle();
+        this.state.Handle(this);
     }
 }
 
 class State {
     constructor() {
-        this.created = true;
     }
 
     Handle (){
@@ -22,18 +29,27 @@ class State {
 
 class ConcreteStateA extends State {
     constructor() {
-        this.created = true;
+        super()
+        facade.log('ConcreteStateA created')
     }
 
-    Handle (){
+    Handle (context){
+        facade.log('ConcreteStateA handle')
     }
 }
 
 class ConcreteStateB extends State {
     constructor() {
-        this.created = true;
+        super()
+        facade.log('ConcreteStateB created')
     }
 
-    Handle (){
+    Handle (context){
+        facade.log('ConcreteStateB handle')
     }
+}
+
+function init_State() {
+    let context = new Contextt("A")
+    context.Request()
 }

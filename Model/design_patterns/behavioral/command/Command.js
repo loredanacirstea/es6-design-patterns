@@ -2,37 +2,50 @@
 
 class Invoker {
     constructor() {
-        this.created = true;
+        facade.log('Invoker created')
+    }
+
+    StoreCommand(command) {
+        this.command = command
     }
 }
 
 class Command {
     constructor() {
-        this.created = true;
     }
 
     Execute() {
-    return '';
+    }
+}
+
+class ConcreteCommand extends Command {
+    constructor(receiver, state) {
+        super()
+        this.receiver = receiver
+        facade.log('ConcreteCommand created')
+    }
+    
+    Execute() {
+        facade.log('ConcreteCommand Execute')
+        this.receiver.Action();
     }
 }
 
 class Receiver {
     constructor() {
-        this.created = true;
+        facade.log('Receiver created')
     }
 
     Action() {
-        return '';
+        facade.log('Receiver Action')
     }
 }
 
-class ConcreteCommand extends Command {
-    constructor(state) {
-        this.created = true;
-        this.state = state;
-    }
-    
-    Execute(receiver) {
-        receiver.Action();
-    }
+
+function init_Command() {
+    var invoker = new Invoker()
+    var receiver = new Receiver()
+    var command = new ConcreteCommand(receiver)
+    invoker.StoreCommand(command)
+    invoker.command.Execute()
 }

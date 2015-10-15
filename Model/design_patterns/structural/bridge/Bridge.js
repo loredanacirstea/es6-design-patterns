@@ -1,41 +1,66 @@
 'use strict';
 
+class Abstraction {
+    constructor() {
+    }
+
+    Operation (){
+        this.imp.OperationImp();
+    }
+}
+
+
+class RefinedAbstraction extends Abstraction {
+    constructor() {
+        super()
+        facade.log('RefinedAbstraction created')
+    }
+
+    setImp (imp) {
+        this.imp = imp
+    }
+
+}
+
+
 class Implementor {
     constructor() {
-        this.created = true;
     }
 
     OperationImp (){
     }
-}
-
-class Abstraction {
-    constructor() {
-        this.created = true;
-    }
-
-    Operation (){
-        var imp = new Implementor();
-        imp.OperationImp();
-    }
-}
-
-class RefinedAbstraction extends Abstraction {
 }
 
 
 class ConcreteImplementorA extends Implementor {
+    constructor() {
+        super()
+        facade.log('ConcreteImplementorA created')
+    }
+
     OperationImp (){
-        return 'A';
+        facade.log('ConcreteImplementorA OperationImp')
     }
 }
 
 class ConcreteImplementorB extends Implementor {
+    constructor() {
+        super()
+        facade.log('ConcreteImplementorB created')
+    }
+
     OperationImp (){
-        return 'B';
+        facade.log('ConcreteImplementorB OperationImp')
     }
 }
 
 function init_Bridge() {
-    facade.log("Not yet implemented");
+    var abstraction = new RefinedAbstraction()
+    var state = Math.floor(Math.random()*2)
+    if(state)
+        abstraction.setImp(new ConcreteImplementorA())
+    else
+        abstraction.setImp(new ConcreteImplementorB())
+
+    abstraction.Operation()
 }

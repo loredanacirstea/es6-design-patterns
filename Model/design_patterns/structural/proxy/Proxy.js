@@ -1,8 +1,7 @@
-
+'use strict';
 
 class Subject {
     constructor() {
-        this.created = true;
     }
 
     Request (){
@@ -10,18 +9,29 @@ class Subject {
 }
 
 class RealSubject extends Subject {
+    constructor() {
+        super()
+        facade.log('RealSubject created')
+    }
+
     Request (){
-        return '';
+        facade.log('RealSubject handles request')
     }
 }
 
 class Proxy extends Subject {
+    constructor() {
+        super()
+        facade.log('Proxy created')
+    }
+
     Request (){
-        var realSubject = new RealSubject();
-        realSubject.Request();
+        this.realSubject = new RealSubject();
+        this.realSubject.Request();
     }
 }
 
 function init_Proxy() {
-    facade.log("Not yet implemented");
+    var proxy = new Proxy()
+    proxy.Request()
 }

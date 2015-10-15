@@ -2,8 +2,8 @@
 
 class Originator {
     constructor() {
-        this.created = true;
-        this.state = '';
+        facade.log('Originator created')
+        this.state = 'a';
     }
 
     SetMemento (Memento){
@@ -16,9 +16,9 @@ class Originator {
 }
 
 class Memento {
-    constructor() {
-        this.created = true;
-        this.state = '';
+    constructor(state) {
+        facade.log('Memento created')
+        this.state = state
     }
 
     GetState (){
@@ -32,6 +32,25 @@ class Memento {
 
 class Caretaker {
     constructor() {
-        this.created = true;
+        facade.log('Caretaker created')
+        this.mementos = []
     }
+
+    AddMemento(memento) {
+        facade.log('Caretaker AddMemento')
+        this.mementos.push(memento)
+    }
+
+    SetMemento() {
+        return this.mementos[this.mementos.length-1]
+    }
+}
+
+function init_Memento() {
+    let caretaker = new Caretaker()
+    let originator = new Originator()
+    caretaker.AddMemento(originator.CreateMemento())
+    originator.state = 'b'
+    originator.SetMemento(caretaker.SetMemento())
+    facade.log(originator.state)
 }

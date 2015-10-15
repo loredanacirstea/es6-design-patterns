@@ -26,7 +26,7 @@ var get_source = function(main_dir, dir, file){
         });
     }
 
-  var facade
+      var facade
 $( document ).ready(function() {
 
   require(['Model/design_patterns/Facade.js']);

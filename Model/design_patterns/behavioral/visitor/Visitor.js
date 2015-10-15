@@ -2,7 +2,6 @@
 
 class Visitor {
     constructor() {
-        facade.log("Visitor class created:");
     }
 
     VisitConcreteElementA (ConcreteElementA){
@@ -14,9 +13,8 @@ class Visitor {
 
 class ConcreteVisitor1 extends Visitor {
     constructor() {
-        this.name = "ConcreteVisitor1";
-        Visitor.prototype.create();
-        facade.log("ConcreteVisitor1");
+        super()
+        facade.log("ConcreteVisitor1 created");
     }
 
     VisitConcreteElementA (ConcreteElementA){
@@ -30,9 +28,8 @@ class ConcreteVisitor1 extends Visitor {
 
 class ConcreteVisitor2 extends Visitor {
     constructor() {
-        this.name = "ConcreteVisitor2";
-        Visitor.prototype.create();
-        facade.log("ConcreteVisitor2");
+        super()
+        facade.log("ConcreteVisitor2 created");
     }
 
     VisitConcreteElementA (ConcreteElementA){
@@ -52,17 +49,19 @@ class ObjectStructure {
 
 class Element {
     constructor() {
-        facade.log("Element class created");
     }
 
     Accept (visitor){
-        facade.log("Element class has accepted the "+ visitor.name +" visitor");
     }
 }
 
 class ConcreteElementA extends Element {
+    constructor() {
+        super()
+        facade.log("ConcreteElementA created");
+    }
+
     Accept (visitor){
-        Element.prototype.Accept(visitor);
         visitor.VisitConcreteElementA(this);
     }
 
@@ -72,8 +71,12 @@ class ConcreteElementA extends Element {
 }
 
 class ConcreteElementB extends Element {
+    constructor() {
+        super()
+        facade.log("ConcreteElementB created");
+    }
+
     Accept (visitor){
-        Element.prototype.Accept(visitor);
         visitor.VisitConcreteElementB(this);
     }
 
@@ -84,9 +87,10 @@ class ConcreteElementB extends Element {
 
 
 function init_Visitor() {
-    var visitor1 = new ConcreteVisitor1();
-    var visitor2 = new ConcreteVisitor2();
-    var element = new ConcreteElementA();
-    element.Accept(visitor1);
-    element.Accept(visitor2);
+    let visitor1 = new ConcreteVisitor1();
+    let visitor2 = new ConcreteVisitor2();
+    let elementA = new ConcreteElementA();
+    let elementB = new ConcreteElementB();
+    elementA.Accept(visitor1);
+    elementB.Accept(visitor2);
 }

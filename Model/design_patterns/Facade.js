@@ -24,7 +24,7 @@ class Facade {
             case "Facade":
                 this.htmlid = "test_Facade"
                 this.erase()
-                this.log("Facade is already created")
+                this.log("This is the Facade")
                 break
             case "AbstractFactory": 
                 this.htmlid = "test_AbstractFactory"
