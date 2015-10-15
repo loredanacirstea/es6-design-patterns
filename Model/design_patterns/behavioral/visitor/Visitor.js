@@ -43,7 +43,7 @@ class ConcreteVisitor2 extends Visitor {
 
 class ObjectStructure {
     constructor() {
-        facade.log("ObjectStructure class created");
+        facade.log("ObjectStructure created");
     }
 }
 

@@ -4,21 +4,23 @@ class Originator {
     constructor() {
         facade.log('Originator created')
         this.state = 'a';
+        facade.log('State= ' + this.state)
     }
 
     SetMemento (Memento){
-        this.state = Memento.GetState();
+        this.state = Memento.GetState()
+        facade.log('State= ' + this.state)
     }
 
-    CreateMemento (){
-        return new Memento(this.state);
+    CreateMemento (state){
+        return new Memento(state);
     }
 }
 
 class Memento {
     constructor(state) {
-        facade.log('Memento created')
         this.state = state
+        facade.log('Memento created. State= ' + this.state)
     }
 
     GetState (){
@@ -49,8 +51,7 @@ class Caretaker {
 function init_Memento() {
     let caretaker = new Caretaker()
     let originator = new Originator()
-    caretaker.AddMemento(originator.CreateMemento())
-    originator.state = 'b'
+    caretaker.AddMemento(originator.CreateMemento('b'))
     originator.SetMemento(caretaker.SetMemento())
     facade.log(originator.state)
 }

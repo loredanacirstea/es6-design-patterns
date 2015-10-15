@@ -32,7 +32,7 @@ class ConcreteHandler2 extends Handler {
         facade.log('ConcreteHandler2 created')
     }
 
-     HandleRequest(request) {
+    HandleRequest(request) {
         facade.log('ConcreteHandler2 has handled the request')
     }
 }

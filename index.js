@@ -7,7 +7,6 @@ var get_source = function(main_dir, dir, file){
             url: url,
             dataType: "script",
             success: function(data){
-                //if(file=="AbstractFactory") console.log(data);
                 var editor = ace.edit("editor_"+file);
                 editor.setTheme("ace/theme/chrome");
                 editor.getSession().setMode("ace/mode/javascript");
@@ -25,11 +24,3 @@ var get_source = function(main_dir, dir, file){
             }
         });
     }
-/*
-      var facade
-$( document ).ready(function() {
-
-  require(['Model/design_patterns/Facade.js']);
-  facade = new Facade();
-  console.log(facade)
-});*/
